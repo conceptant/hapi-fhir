@@ -18,18 +18,23 @@ This docker image is probably your fastest and simplest way to get your own impl
 
 **Is this docker image production-ready?**
 
-Absolutely not! This image is good only for local demos, development and some testing. It lacks quite a few features one would expect from a production-ready system:
+This image is suitable for demos, development and  testing. It lacks quite a few features one would expect from a production-ready system:
 - Scalability. This is an all-in-one image containing everything you need in one compact image.
   - In a real-world production system you definitely want to split out at least the database so you can use a database cluster.
+  - Most likely you will actually want to connect to your own database server, not bbuilt-in Derby
   - You will also very likely need multiple application servers behind the load balancer.
   - For security reasons FHIR client should not bbe included into the same image as the server.
 - Persistance. Once you delete the container based on this image you data will be gone.
 - And, most importantly, security. If you're going to store PHI (Protected Health Information) in a system it needs to be properly engineered and protected, which is a very complex task.
 
-There are more reasons for not using this image for production, just trust us, it would be a bad idea.
-
 # Quick start
 `docker run -p 8080:8080 conceptant/hapi-fhir`
+
+If you want data to survive container deletion use this command:
+
+`-v <host_directory>:/var/lib/jetty/target`
+
+where you need to replace <host_directory> with either a path to an existing directory on the host file system or name of a docker volume.
 
 The image will take a minute to spin up and then you can go to http://localhost:8080 to access the FHIR client.
 

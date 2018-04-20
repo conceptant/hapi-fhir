@@ -11,6 +11,6 @@ RUN mvn package -Dmaven.test.skip=true
 
 FROM jetty:9-jre8-alpine as runner
 USER jetty:jetty
-VOLUME /data
+VOLUME /var/lib/jetty/target
 COPY --from=builder /hapi-fhir/hapi-fhir-jpaserver-example/target/hapi-fhir-jpaserver-example.war /var/lib/jetty/webapps/root.war
 EXPOSE 8080
