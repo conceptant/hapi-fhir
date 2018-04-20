@@ -1,19 +1,32 @@
 # Q&A
 
-<dl>
+**What is FHIR?**
 
-<dt>What is FHIR?</dt>
-<dd>FHIR (Fast Healthcare Interoperability Resources) is a standard for exchanging healthcare information electronically. You can find more about it here: https://www.hl7.org/fhir/overview.html</dd>
+FHIR (Fast Healthcare Interoperability Resources) is a standard for exchanging healthcare information electronically. You can find more about it here: https://www.hl7.org/fhir/overview.html
 
-<dt>What is HAPI?</dt>
-<dd>A: HAPI is an open-source implementation of the FHIR specification in Java. You can read about it here: http://hapifhir.io/</dd>
+**What is HAPI?**
 
-<dt>What is Conceptant, Inc?</dt>
-<dd>A: Conceptant, Inc. is a business specializing on healthcare solutions. You can read about it here: http://conceptant.com/</dd>
+HAPI is an open-source implementation of the FHIR specification in Java. You can read about it here: http://hapifhir.io/
 
-<dt>What is HAPI FHIR all-in-one (this repository)</dt>
-<dd>A: This docker image is probably your fastest and simplest way to get your own implementation of FHIR server and client running in 10 minutes or less. It is largly based</dd>
-</dl>
+**What is Conceptant, Inc.?**
+
+Conceptant, Inc. is a business specializing on healthcare solutions. You can read about it here: http://conceptant.com/
+
+**What is HAPI FHIR all-in-one (this repository)**
+
+This docker image is probably your fastest and simplest way to get your own implementation of FHIR server and client running in 10 minutes or less.
+
+**Is this docker image production-ready?**
+
+Absolutely not! This image is good only for local demos, development and some testing. It lacks quite a few features one would expect from a production-ready system:
+- Scalability. This is an all-in-one image containing everything you need in one compact image.
+  - In a real-world production system you definitely want to split out at least the database so you can use a database cluster.
+  - You will also very likely need multiple application servers behind the load balancer.
+  - For security reasons FHIR client should not bbe included into the same image as the server.
+- Persistance. Once you delete the container based on this image you data will be gone.
+- And, most importantly, security. If you're going to store PHI (Protected Health Information) in a system it needs to be properly engineered and protected, which is a very complex task.
+
+There are more reasons for not using this image for production, just trust us, it would be a bad idea.
 
 # Quick start
 `docker run -p 8080:8080 conceptant/hapi-fhir`
@@ -22,11 +35,11 @@ The image will take a minute to spin up and then you can go to http://localhost:
 
 # If you need to customize the docker file
 
-`git clone https://github.com/conceptant/docker-hapi-fhir.git`
+`git clone https://github.com/conceptant/hapi-fhir.git`
 
 Now make you custominzations and built as usual.
 
 # Thanks!
 Big thanks to
 - HL7 (Health Level Seven International) for coming up with the FHIR
-- HAPI for coming up with an opensource implementation of HL7
+- HAPI for building an opensource implementation of HL7 FHIR
