@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<div th:fragment="banner" class="well">
+    <th:block th:if="${serverId} == 'home'">
+        <p>
+            This server provides a nearly complete implementation of the FHIR Specification
+            using a 100% open source software stack <a href-="http://hapifhir.io/">HAPI FHIR</a>
+        </p>
+        <p>
+            This docker image is provided by Conceptant, Inc. and is available from Docker Hub here: <a href="https://hub.docker.com/r/conceptant/hapi-fhir/">https://hub.docker.com/r/conceptant/hapi-fhir/</a>.
+            The Docker source files are available at <a href="https://github.com/conceptant/hapi-fhir">https://github.com/conceptant/hapi-fhir</a>.
+            Conceptant, Inc. is a business specializing on healthcare solutions. You can read about it here: <a href="http://conceptant.com/">http://conceptant.com/</a>.
+        </p>
+    </th:block>
+    <th:block th:if="${serverId} != 'home'">
+        <p>
+            This is not a production server and it provides no privacy. Do not store any confidential data here.
+        </p>
+    </th:block>
+    <p>
+    <p>
+        This is not a production server and it provides no privacy. Do not store any confidential data here.
+    </p>
+    </p>
+</div>
+</html>
