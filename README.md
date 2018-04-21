@@ -30,7 +30,7 @@ This image is suitable for demos, development and  testing. It lacks quite a few
 # Quick start
 `docker run -p 8080:8080 -v <host_directory>:/var/lib/jetty/target conceptant/hapi-fhir`
 
-where you need to replace <host_directory> with either a path to an existing directory on the host file system or name of a docker volume.
+where you need to replace "<host_directory>" with either a path to an existing directory on the host file system or a name of a docker volume. You can read more about Docker volumes here: https://docs.docker.com/storage/volumes/
 
 The image will take a minute to spin up and then you can go to http://localhost:8080 to access the FHIR client.
 
