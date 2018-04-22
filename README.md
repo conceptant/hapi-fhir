@@ -28,11 +28,16 @@ This image is suitable for demos, development and  testing. It lacks quite a few
 - And, most importantly, security. If you're going to store PHI (Protected Health Information) in a system it needs to be properly engineered and protected, which is a very complex task.
 
 # Quick start
+
+`docker run -p 8080:8080 conceptant/hapi-fhir`
+
+The image will take a minute to spin up and then you can go to http://localhost:8080 to access the FHIR client. Note that any data you store in the running container will be gone after you delete it.
+
+If you want data to survive container deletion use this command instead:
+
 `docker run -p 8080:8080 -v <host_directory>:/var/lib/jetty/target conceptant/hapi-fhir`
 
 where you need to replace "<host_directory>" with either a path to an existing directory on the host file system or a name of a docker volume. You can read more about Docker volumes here: https://docs.docker.com/storage/volumes/
-
-The image will take a minute to spin up and then you can go to http://localhost:8080 to access the FHIR client.
 
 # If you need to customize the docker file
 
