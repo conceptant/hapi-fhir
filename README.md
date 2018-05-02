@@ -29,19 +29,35 @@ This image is suitable for demos, development and  testing. It lacks quite a few
 
 # Quick start
 
-`docker run -p 8080:8080 conceptant/hapi-fhir`
+```
+docker run -p 8080:8080 conceptant/hapi-fhir
+```
 
 The image will take a minute to spin up and then you can go to http://localhost:8080 to access the FHIR client. Note that any data you store in the running container will be gone after you delete it.
 
 If you want data to survive container deletion use this command instead:
 
-`docker run -p 8080:8080 -v <host_directory>:/var/lib/jetty/target conceptant/hapi-fhir`
+```
+docker run -p 8080:8080 -v <host_directory>:/var/lib/jetty/target conceptant/hapi-fhir
+```
 
 where you need to replace "<host_directory>" with either a path to an existing directory on the host file system or a name of a docker volume. You can read more about Docker volumes here: https://docs.docker.com/storage/volumes/
 
+NOTE: that volume direectory must have sufficient permissions for the docker container to write into it. Possibly the simplest way to do this is
+```
+> chmod a+wrx <host_directory>
+> # start docker container as shown above
+> # ls -la <host_directory>
+> # find the username and the group the folders in this <host_directory> belong to (for instance user systemd-timesync, group systemd-journal under ubuntu)
+> # chown <username>:<group> <host_directory>
+> # chmod og-w <host_directory>
+```
+
 # If you need to customize the docker file
 
-`git clone https://github.com/conceptant/hapi-fhir.git`
+```
+git clone https://github.com/conceptant/hapi-fhir.git
+```
 
 Now make you custominzations and built as usual.
 
